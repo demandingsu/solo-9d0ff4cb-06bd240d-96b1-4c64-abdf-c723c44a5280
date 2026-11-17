@@ -15,6 +15,11 @@ for _suffix in ("", "-wal", "-shm"):
         os.remove(_DB + _suffix)
     except FileNotFoundError:
         pass
+# Shared with every other HTTP test module in this process; set before
+# app.main is imported so the singleton Database uses the same file.
+from tests import _db  # noqa: E402
+
+_DB = _db.DB_PATH
 os.environ["BATTERY_DB_PATH"] = _DB
 
 from fastapi.testclient import TestClient  # noqa: E402

@@ -1,0 +1,3 @@
+# Test-only dependencies (not needed by the API runtime / Docker image).
+-r requirements.txt
+httpx>=0.27
